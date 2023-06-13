@@ -1,36 +1,22 @@
-import CurrentTime from "@/components/time";
+import Nav from "@/components/nav";
 import Image from "next/image";
 import fan from "@/images/fan.png";
+import FanController from "@/components/fanControl";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between">
-      <div className="border-b-2 border-slate-900 w-full py-3 px-4">
-        <div className="text-xl grid grid-cols-3 align-center align-middle w-full justify-around">
-          <div className="flex text-start items-center">
-            <span className="font-bold tracking-widest justify-center">
-              MCIVOR DYNAMICS
-            </span>{" "}
-            <span className="px-4 m-0 text-sm">x</span>
-            <span className="font-mono">jamesmcfarland</span>
-          </div>
-          <div className="text-3xl font-bold justify-center items-center flex text-center">
-            <Image
-              src={fan}
-              alt="fan icon"
-              width={50}
-              className="fan-animation"
-            ></Image>
-            <span className="px-4">WINDCTRL</span>
-            <Image
-              src={fan}
-              alt="fan icon"
-              width={50}
-              className="fan-animation"
-            ></Image>
-          </div>
-          <div className="text-sm font-bold justify-end items-center  text-end flex align-middle">
-            <CurrentTime />
+    <main className="min-h-screen flex flex-col dark">
+      <Nav />
+      <div className="h-full w-full grow">
+        <div className="font-bold uppercase tracking-widest">
+          <div className="border-4 rounded-md border-slate-950 p-4 w-max m-4">
+            <p className="text-xl">fans</p>
+            <div>
+              <FanController fanName="Fan 1" fanRPM={3000} />
+              <FanController fanName="Fan 2" fanRPM={4000} />
+              <FanController fanName="Fan 3" fanRPM={5000} />
+              <FanController fanName="Fan 4" fanRPM={6000} />
+            </div>
           </div>
         </div>
       </div>
