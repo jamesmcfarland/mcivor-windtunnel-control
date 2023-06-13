@@ -11,7 +11,9 @@ export default function Home() {
         <div className="font-bold uppercase tracking-widest">
           <div className="border-4 rounded-md border-slate-950 p-4 w-max m-4">
             <p className="text-xl">fans</p>
+            <p className="text-xl">fans</p>
             <div>
+              <FanController fanName="Global" fanRPM={3000} />
               <FanController fanName="Fan 1" fanRPM={3000} />
               <FanController fanName="Fan 2" fanRPM={4000} />
               <FanController fanName="Fan 3" fanRPM={5000} />
