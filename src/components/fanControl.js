@@ -1,8 +1,12 @@
 import Image from "next/image";
 import fan from "@/images/fan.png";
-const FanController = ({ fanName, fanRPM }) => {
+const FanController = ({ fanName, fanRPM, enabled }) => {
   return (
-    <div className="grid w-full grid-cols-2 my-2 items-center">
+    <div
+      className={`grid w-full grid-cols-2 my-2 items-center ${
+        enabled ? "opacity-100" : "opacity-50"
+      }`}
+    >
       <div className="flex justify-between">
         <p>{fanName}</p>
         <Image
