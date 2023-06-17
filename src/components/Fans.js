@@ -7,11 +7,21 @@ import { Switch } from "./shadcn/switch";
 
 const Fans = () => {
   const [globalControl, setglobalControl] = useState(true);
-  const [globalRPM, setglobalRPM] = useState(0);
+  const [globalRPM, _setglobalRPM] = useState(0);
   const [fan1RPM, setfan1RPM] = useState(0);
   const [fan2RPM, setfan2RPM] = useState(0);
   const [fan3RPM, setfan3RPM] = useState(0);
   const [fan4RPM, setfan4RPM] = useState(0);
+
+  const setglobalRPM = (value) => {
+    _setglobalRPM(value);
+    if (globalControl) {
+      setfan1RPM(value);
+      setfan2RPM(value);
+      setfan3RPM(value);
+      setfan4RPM(value);
+    }
+  };
 
   return (
     <div className="border-4 rounded-md border-slate-950 p-4 w-max m-4">
@@ -21,6 +31,10 @@ const Fans = () => {
         id="globalFans"
         checked={globalControl}
         onCheckedChange={(checked) => {
+          setfan1RPM(globalRPM);
+          setfan2RPM(globalRPM);
+          setfan3RPM(globalRPM);
+          setfan4RPM(globalRPM);
           setglobalControl(checked);
         }}
       />

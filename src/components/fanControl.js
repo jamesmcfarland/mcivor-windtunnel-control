@@ -30,6 +30,7 @@ const FanController = ({ fanName, fanRPM, enabled, rpmChanged }) => {
       </p>
       <Slider
         defaultValue={[fanRPM]}
+        value={[fanRPM]}
         step={1}
         max={100}
         disabled={!enabled}
