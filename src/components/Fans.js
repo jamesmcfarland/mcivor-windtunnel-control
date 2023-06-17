@@ -7,6 +7,11 @@ import { Switch } from "./shadcn/switch";
 
 const Fans = () => {
   const [globalControl, setglobalControl] = useState(true);
+  const [globalRPM, setglobalRPM] = useState(0);
+  const [fan1RPM, setfan1RPM] = useState(0);
+  const [fan2RPM, setfan2RPM] = useState(0);
+  const [fan3RPM, setfan3RPM] = useState(0);
+  const [fan4RPM, setfan4RPM] = useState(0);
 
   return (
     <div className="border-4 rounded-md border-slate-950 p-4 w-max m-4">
@@ -20,22 +25,37 @@ const Fans = () => {
         }}
       />
       <div>
-        <FanController fanName="Global" fanRPM={3000} enabled={globalControl} />
-        <Slider
-          defaultValue={[33]}
-          step={1}
-          max={100}
-          disabled={!globalControl}
+        <FanController
+          fanName="Global"
+          fanRPM={globalRPM}
+          enabled={globalControl}
+          rpmChanged={setglobalRPM}
         />
         <div className="h-10"></div>
         <FanController
           fanName="Fan 1"
-          fanRPM={globalControl.toString()}
+          fanRPM={fan1RPM}
+          rpmChanged={setfan1RPM}
           enabled={!globalControl}
         />
-        <FanController fanName="Fan 2" fanRPM={4000} enabled={!globalControl} />
-        <FanController fanName="Fan 3" fanRPM={5000} enabled={!globalControl} />
-        <FanController fanName="Fan 4" fanRPM={6000} enabled={!globalControl} />
+        <FanController
+          fanName="Fan 2"
+          fanRPM={fan2RPM}
+          rpmChanged={setfan2RPM}
+          enabled={!globalControl}
+        />
+        <FanController
+          fanName="Fan 3"
+          fanRPM={fan3RPM}
+          rpmChanged={setfan3RPM}
+          enabled={!globalControl}
+        />
+        <FanController
+          fanName="Fan 4"
+          fanRPM={fan4RPM}
+          rpmChanged={setfan4RPM}
+          enabled={!globalControl}
+        />
       </div>
     </div>
   );
