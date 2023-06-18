@@ -1,8 +1,6 @@
 "use client";
 
 import { Card, Title, LineChart } from "@tremor/react";
-import { useEffect, useState } from "react";
-
 const dataFormatter = (number) => `${Math.round(number)} RPM`;
 
 const LineGraph = ({ fanName, isGlobal = false, data }) => {

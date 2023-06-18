@@ -10,8 +10,17 @@ import { Separator } from "@/components/shadcn/separator";
 import Settings from "@/components/Settings";
 
 export default function Home() {
-  const [controllerIP, setcontrollerIP] = useState("127.0.0.1:5000");
-  const [maxRPM, setmaxRPM] = useState(1800);
+  let controllerLS = "";
+  let maxRPMLS = "";
+  if (typeof window !== "undefined") {
+    controllerLS = localStorage.getItem("controllerIP");
+    maxRPMLS = localStorage.getItem("maxRPM");
+  }
+
+  const [controllerIP, setcontrollerIP] = useState(
+    controllerLS || "127.0.0.1:5000"
+  );
+  const [maxRPM, setmaxRPM] = useState(maxRPMLS || 1000);
 
   return (
     <main className="min-h-screen flex flex-col dark">

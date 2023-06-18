@@ -10,6 +10,24 @@ const Settings = ({ setIP, ip, setmaxRPM, maxRPM }) => {
   const { toast } = useToast();
   const [localIP, setlocalIP] = useState(ip);
   const [maxrpmState, setmaxrpmState] = useState(maxRPM);
+
+  const resetFanSpeeds = async () => {
+    await fetch(`http://${ip}/setfans`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+
+      body: JSON.stringify({
+        global: 0,
+        f1: 0,
+        f2: 0,
+        f3: 0,
+        f4: 0,
+      }),
+    });
+  };
+
   return (
     <div className="border-4 rounded-md border-slate-800 p-4 h-fit  m-4 pr-4">
       <p className="text-xl">Settings</p>
@@ -30,6 +48,7 @@ const Settings = ({ setIP, ip, setmaxRPM, maxRPM }) => {
           className="mx-2"
           onClick={() => {
             setIP(localIP);
+            localStorage.setItem("controllerIP", localIP);
             toast({
               title: "IP changed",
               description: `IP changed to ${localIP}`,
@@ -57,6 +76,8 @@ const Settings = ({ setIP, ip, setmaxRPM, maxRPM }) => {
           className="mx-2"
           onClick={() => {
             setmaxRPM(maxrpmState);
+            localStorage.setItem("maxRPM", maxrpmState);
+            resetFanSpeeds();
             toast({
               title: "Max RPM changed",
               description: `Max RPM changed to ${maxrpmState}`,

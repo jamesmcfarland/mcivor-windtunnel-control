@@ -31,6 +31,8 @@ const Graphs = ({ ip, maxRPM }) => {
           actual_f4,
         } = json;
 
+        console.log(f1, f2, f3, f4, global);
+
         setfanSpeeds((prev) => {
           return {
             f1: [
