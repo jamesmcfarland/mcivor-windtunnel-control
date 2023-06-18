@@ -27,7 +27,7 @@ body {
 }
 
 .fan-animation {
-  animation: fan 2s infinite linear;
+  animation: fan 1s infinite linear;
 }
 
 @keyframes fan {

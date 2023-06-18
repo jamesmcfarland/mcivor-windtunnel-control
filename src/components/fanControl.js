@@ -20,7 +20,10 @@ const FanController = ({ fanName, fanRPM, enabled, rpmChanged, maxRPM }) => {
             src={fan}
             alt="fan icon"
             width={25}
-            className="fan-animation mx-2 "
+            className="fan-animation mx-2"
+            style={{
+              animation: `fan ${1 - fanRPM / 100 + 0.25}s infinite linear`,
+            }}
           ></Image>
         </div>
       </div>
