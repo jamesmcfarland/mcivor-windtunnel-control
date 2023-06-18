@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-const CurrentTime = () => {
+const CurrentTime = ({ ip }) => {
   const [currentTime, setCurrentTime] = useState("00:00:00");
   useEffect(() => {
     setCurrentTime(new Date().toLocaleTimeString());
@@ -12,7 +12,12 @@ const CurrentTime = () => {
     return () => clearInterval(interval);
   }, []);
 
-  return <h1>TIME: {currentTime}</h1>;
+  return (
+    <div>
+      <h1>TIME: {currentTime}</h1>
+      <h1>CONTROL IP: {ip}</h1>
+    </div>
+  );
 };
 
 export default CurrentTime;

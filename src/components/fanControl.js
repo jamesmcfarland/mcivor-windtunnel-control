@@ -2,14 +2,11 @@ import Image from "next/image";
 import fan from "@/images/fan.png";
 import { Slider } from "./shadcn/slider";
 
-const mapPercentsToRPM = (percent) => {
-  const minRPM = 0;
-  const maxRPM = 1800;
-
-  return Math.round((percent / 100) * (maxRPM - minRPM) + minRPM);
+const mapPercentsToRPM = (percent, maxRPM) => {
+  return Math.round((percent / 100) * maxRPM);
 };
 
-const FanController = ({ fanName, fanRPM, enabled, rpmChanged }) => {
+const FanController = ({ fanName, fanRPM, enabled, rpmChanged, maxRPM }) => {
   return (
     <div
       className={`grid w-full grid-cols-2 my-2 items-center ${
@@ -28,7 +25,7 @@ const FanController = ({ fanName, fanRPM, enabled, rpmChanged }) => {
         </div>
       </div>
       <p className="text-end text-sm opacity-70 ">
-        {mapPercentsToRPM(fanRPM)} rpm
+        {mapPercentsToRPM(fanRPM, maxRPM)} rpm
       </p>
       <Slider
         defaultValue={[fanRPM]}
