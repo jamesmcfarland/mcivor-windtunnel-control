@@ -16,11 +16,11 @@ const Nav = ({ ip, setIP }) => {
     <div className="border-b-2 border-slate-900 w-full py-3 px-4">
       <div className="text-xl grid grid-cols-3 align-center align-middle w-full justify-around">
         <div className="flex text-start items-center">
-          <span className="font-bold tracking-widest justify-center">
+          <div className="font-bold tracking-widest justify-center">
             MCIVOR DYNAMICS
-          </span>{" "}
-          <span className="px-4 m-0 text-sm">x</span>
-          <span className="font-mono">jamesmcfarland</span>
+          </div>{" "}
+          <div className="px-4 m-0 text-sm">x</div>
+          <div className="font-mono">jamesmcfarland</div>
         </div>
         <div className="text-3xl font-bold justify-center items-center flex text-center">
           <Image
@@ -37,32 +37,7 @@ const Nav = ({ ip, setIP }) => {
             className="fan-animation"
           ></Image>
         </div>
-        <div className="text-sm font-bold justify-between items-center  text-end flex align-middle">
-          <div className="flex justify-around items-center">
-            <Label htmlFor="ip" className="pr-2">
-              Controller IP
-            </Label>
-            <Input
-              type="text"
-              id="ip"
-              placeholder="0.0.0.0"
-              className="w-min"
-              value={localIP}
-              onChange={(e) => setlocalIP(e.target.value)}
-            />
-            <Button
-              className="mx-2"
-              onClick={() => {
-                setIP(localIP);
-                toast({
-                  title: "IP changed",
-                  description: `IP changed to ${localIP}`,
-                });
-              }}
-            >
-              Update
-            </Button>
-          </div>
+        <div className="text-sm font-bold justify-end items-center  text-end flex align-middle">
           <CurrentTime ip={ip} />
         </div>
       </div>

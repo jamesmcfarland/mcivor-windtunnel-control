@@ -10,14 +10,12 @@ import { Separator } from "./shadcn/separator";
 import { useToast } from "./shadcn/use-toast";
 
 const Fans = ({ ip, setmaxRPM, maxRPM }) => {
-  const { toast } = useToast();
   const [globalControl, setglobalControl] = useState(true);
   const [globalRPM, _setglobalRPM] = useState(0);
   const [fan1RPM, _setfan1RPM] = useState(0);
   const [fan2RPM, _setfan2RPM] = useState(0);
   const [fan3RPM, _setfan3RPM] = useState(0);
   const [fan4RPM, _setfan4RPM] = useState(0);
-  const [maxrpmState, setmaxrpmState] = useState(maxRPM);
 
   const postFanSpeeds = async (f1, f2, f3, f4, global) => {
     await fetch(`http://${ip}/setfans`, {
@@ -69,34 +67,8 @@ const Fans = ({ ip, setmaxRPM, maxRPM }) => {
   };
 
   return (
-    <div className="border-4 rounded-md border-slate-800 p-4 w-1/2 h-fit  m-4 pr-4">
+    <div className="border-4 rounded-md border-slate-800 p-4 h-fit  m-4 pr-4">
       <p className="text-xl">fans</p>
-      <div className="flex justify-between items-center py-2">
-        <Label htmlFor="maxRPM" className="pr-2">
-          Max RPM
-        </Label>
-        <Input
-          type="number"
-          id="maxRPM"
-          placeholder={1800}
-          className="w-min"
-          value={maxrpmState}
-          onChange={(e) => setmaxrpmState(e.target.value)}
-        />
-        <Button
-          className="mx-2"
-          onClick={() => {
-            setmaxRPM(maxrpmState);
-            toast({
-              title: "Max RPM changed",
-              description: `Max RPM changed to ${maxrpmState}`,
-            });
-          }}
-        >
-          SET
-        </Button>
-      </div>
-      <Separator className="my-4" />
       <div className="flex items-center justify-start my-4">
         <Label htmlFor="globalFans" className="mr-4">
           Global control

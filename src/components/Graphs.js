@@ -87,7 +87,7 @@ const Graphs = ({ ip, maxRPM }) => {
     return () => clearInterval(interval);
   }, [toast, ip, rpmMultiplier]);
   return (
-    <div className="grid grid-cols-2">
+    <div className="grid grid-cols-2 w-full py-4">
       <LineGraph
         fanName="Global Fans"
         isGlobal={true}
