@@ -1,6 +1,6 @@
 "use client";
 
-import { Card, Title, LineChart } from "@tremor/react";
+import { Card, Title, LineChart, AreaChart } from "@tremor/react";
 const dataFormatter = (number) => `${Math.round(number)} RPM`;
 
 const LineGraph = ({ fanName, isGlobal = false, data }) => {
@@ -8,7 +8,7 @@ const LineGraph = ({ fanName, isGlobal = false, data }) => {
     <div className={isGlobal ? "col-span-2" : "col-span-1"}>
       <Card>
         <Title>{fanName} target</Title>
-        <LineChart
+        <AreaChart
           className="mt-6 h-48"
           data={data}
           index="index"
