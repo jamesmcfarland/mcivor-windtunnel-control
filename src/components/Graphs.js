@@ -83,7 +83,7 @@ const Graphs = ({ ip, maxRPM }) => {
           description: "Check the controller IP! (Current: " + ip + ")",
         });
       }
-    }, 1000);
+    }, 250);
     return () => clearInterval(interval);
   }, [toast, ip, rpmMultiplier]);
   return (
