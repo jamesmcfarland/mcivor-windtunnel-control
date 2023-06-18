@@ -24,7 +24,7 @@ const Fans = () => {
   };
 
   return (
-    <div className="border-4 rounded-md border-slate-950 p-4 w-max m-4">
+    <div className="border-4 rounded-md border-slate-800 p-4 w-1/2 h-fit  m-4 pr-4">
       <p className="text-xl">fans</p>
       <Label htmlFor="globalFans">Global control</Label>
       <Switch

@@ -17,13 +17,15 @@ const FanController = ({ fanName, fanRPM, enabled, rpmChanged }) => {
       }`}
     >
       <div className="flex justify-between">
-        <p>{fanName}</p>
-        <Image
-          src={fan}
-          alt="fan icon"
-          width={25}
-          className="fan-animation mx-2 "
-        ></Image>
+        <div className="flex">
+          <p>{fanName}</p>
+          <Image
+            src={fan}
+            alt="fan icon"
+            width={25}
+            className="fan-animation mx-2 "
+          ></Image>
+        </div>
       </div>
       <p className="text-end text-sm opacity-70 ">
         {mapPercentsToRPM(fanRPM)} rpm
