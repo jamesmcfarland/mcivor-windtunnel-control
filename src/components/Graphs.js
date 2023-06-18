@@ -12,7 +12,7 @@ const Graphs = ({ ip, maxRPM }) => {
     global: [{ index: 0, target: 0, actual: 0 }],
   });
   const rpmMultiplier = maxRPM / 100;
-
+  const historyLength = 100;
   useEffect(() => {
     const interval = setInterval(async () => {
       try {
@@ -36,7 +36,7 @@ const Graphs = ({ ip, maxRPM }) => {
         setfanSpeeds((prev) => {
           return {
             f1: [
-              ...prev.f1.slice(prev.f1.length - 20, prev.f1.length),
+              ...prev.f1.slice(prev.f1.length - historyLength, prev.f1.length),
               {
                 index: prev.f1[prev.f1.length - 1].index + 1,
                 target: f1 * rpmMultiplier,
@@ -44,7 +44,7 @@ const Graphs = ({ ip, maxRPM }) => {
               },
             ],
             f2: [
-              ...prev.f2.slice(prev.f2.length - 20, prev.f2.length),
+              ...prev.f2.slice(prev.f2.length - historyLength, prev.f2.length),
               {
                 index: prev.f2[prev.f2.length - 1].index + 1,
                 target: f2 * rpmMultiplier,
@@ -52,7 +52,7 @@ const Graphs = ({ ip, maxRPM }) => {
               },
             ],
             f3: [
-              ...prev.f3.slice(prev.f3.length - 20, prev.f3.length),
+              ...prev.f3.slice(prev.f3.length - historyLength, prev.f3.length),
               {
                 index: prev.f3[prev.f3.length - 1].index + 1,
                 target: f3 * rpmMultiplier,
@@ -60,7 +60,7 @@ const Graphs = ({ ip, maxRPM }) => {
               },
             ],
             f4: [
-              ...prev.f4.slice(prev.f4.length - 20, prev.f4.length),
+              ...prev.f4.slice(prev.f4.length - historyLength, prev.f4.length),
               {
                 index: prev.f4[prev.f4.length - 1].index + 1,
                 target: f4 * rpmMultiplier,
@@ -68,7 +68,10 @@ const Graphs = ({ ip, maxRPM }) => {
               },
             ],
             global: [
-              ...prev.global.slice(prev.global.length - 20, prev.global.length),
+              ...prev.global.slice(
+                prev.global.length - historyLength,
+                prev.global.length
+              ),
               {
                 index: prev.global[prev.global.length - 1].index + 1,
                 target: global * rpmMultiplier,
