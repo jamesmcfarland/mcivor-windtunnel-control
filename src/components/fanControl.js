@@ -1,12 +1,22 @@
+"use client";
 import Image from "next/image";
 import fan from "@/images/fan.png";
 import { Slider } from "./shadcn/slider";
+import { useState } from "react";
 
 const mapPercentsToRPM = (percent, maxRPM) => {
   return Math.round((percent / 100) * maxRPM);
 };
 
-const FanController = ({ fanName, fanRPM, enabled, rpmChanged, maxRPM }) => {
+const FanController = ({
+  fanName,
+  fanRPM,
+  enabled,
+  rpmChanged,
+  maxRPM,
+  commitFanSpeed,
+}) => {
+  const [tempState, settempState] = useState(0);
   return (
     <div
       className={`grid w-full grid-cols-2 my-2 items-center ${
@@ -38,6 +48,7 @@ const FanController = ({ fanName, fanRPM, enabled, rpmChanged, maxRPM }) => {
         disabled={!enabled}
         className="w-full my-2 col-span-2 "
         onValueChange={(value) => rpmChanged(value[0])}
+        onValueCommit={(value) => commitFanSpeed()}
       />
     </div>
   );

@@ -12,10 +12,10 @@ import { useToast } from "./shadcn/use-toast";
 const Fans = ({ ip, setmaxRPM, maxRPM }) => {
   const [globalControl, setglobalControl] = useState(true);
   const [globalRPM, _setglobalRPM] = useState(0);
-  const [fan1RPM, _setfan1RPM] = useState(0);
-  const [fan2RPM, _setfan2RPM] = useState(0);
-  const [fan3RPM, _setfan3RPM] = useState(0);
-  const [fan4RPM, _setfan4RPM] = useState(0);
+  const [fan1RPM, setfan1RPM] = useState(0);
+  const [fan2RPM, setfan2RPM] = useState(0);
+  const [fan3RPM, setfan3RPM] = useState(0);
+  const [fan4RPM, setfan4RPM] = useState(0);
 
   const postFanSpeeds = async (f1, f2, f3, f4, global) => {
     await fetch(`http://${ip}/setfans`, {
@@ -42,28 +42,32 @@ const Fans = ({ ip, setmaxRPM, maxRPM }) => {
       setfan3RPM(value);
       setfan4RPM(value);
     }
-    postFanSpeeds(value, value, value, value, value);
+    // postFanSpeeds(value, value, value, value, value);
   };
 
-  const setfan1RPM = (value) => {
-    _setfan1RPM(value);
-    postFanSpeeds(value, fan2RPM, fan3RPM, fan4RPM, globalRPM);
-  };
+  // const setfan1RPM = (value) => {
+  //   _setfan1RPM(value);
+  //   postFanSpeeds(value, fan2RPM, fan3RPM, fan4RPM, globalRPM);
+  // };
 
-  const setfan2RPM = (value) => {
-    _setfan2RPM(value);
-    postFanSpeeds(fan1RPM, value, fan3RPM, fan4RPM, globalRPM);
-  };
+  // const setfan2RPM = (value) => {
+  //   _setfan2RPM(value);
+  //   postFanSpeeds(fan1RPM, value, fan3RPM, fan4RPM, globalRPM);
+  // };
 
-  const setfan3RPM = (value) => {
-    _setfan3RPM(value);
+  // const setfan3RPM = (value) => {
+  //   _setfan3RPM(value);
 
-    postFanSpeeds(fan1RPM, fan2RPM, value, fan4RPM, globalRPM);
-  };
+  //   postFanSpeeds(fan1RPM, fan2RPM, value, fan4RPM, globalRPM);
+  // };
 
-  const setfan4RPM = (value) => {
-    _setfan4RPM(value);
-    postFanSpeeds(fan1RPM, fan2RPM, fan3RPM, value, globalRPM);
+  // const setfan4RPM = (value) => {
+  //   _setfan4RPM(value);
+  //   postFanSpeeds(fan1RPM, fan2RPM, fan3RPM, value, globalRPM);
+  // };
+
+  const sendFans = () => {
+    postFanSpeeds(fan1RPM, fan2RPM, fan3RPM, fan4RPM, globalRPM);
   };
 
   return (
@@ -90,6 +94,7 @@ const Fans = ({ ip, setmaxRPM, maxRPM }) => {
           fanName="Global"
           fanRPM={globalRPM}
           enabled={globalControl}
+          commitFanSpeed={sendFans}
           rpmChanged={setglobalRPM}
           maxRPM={maxRPM}
         />
@@ -98,6 +103,7 @@ const Fans = ({ ip, setmaxRPM, maxRPM }) => {
           fanName="Fan 1"
           fanRPM={fan1RPM}
           rpmChanged={setfan1RPM}
+          commitFanSpeed={sendFans}
           enabled={!globalControl}
           maxRPM={maxRPM}
         />
@@ -106,6 +112,7 @@ const Fans = ({ ip, setmaxRPM, maxRPM }) => {
           fanRPM={fan2RPM}
           rpmChanged={setfan2RPM}
           enabled={!globalControl}
+          commitFanSpeed={sendFans}
           maxRPM={maxRPM}
         />
         <FanController
@@ -113,6 +120,7 @@ const Fans = ({ ip, setmaxRPM, maxRPM }) => {
           fanRPM={fan3RPM}
           rpmChanged={setfan3RPM}
           enabled={!globalControl}
+          commitFanSpeed={sendFans}
           maxRPM={maxRPM}
         />
         <FanController
@@ -120,6 +128,7 @@ const Fans = ({ ip, setmaxRPM, maxRPM }) => {
           fanRPM={fan4RPM}
           rpmChanged={setfan4RPM}
           enabled={!globalControl}
+          commitFanSpeed={sendFans}
           maxRPM={maxRPM}
         />
       </div>
